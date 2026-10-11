@@ -61,10 +61,10 @@ code, .mono { font-family: var(--mono); font-size: .88em; }
 .card h3 { margin: 18px 0 8px; font-size: 15px; }
 .eyebrow { margin: 0 0 4px; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 700; color: var(--muted); }
 
-.status { border-left-width: 6px; }
-.status.good { border-left-color: var(--good); }
-.status.warn { border-left-color: var(--warn); }
-.status.bad { border-left-color: var(--bad); }
+/* Status is carried by a tinted surface + colored state line, not a side stripe. */
+.status.good { background: linear-gradient(var(--good-bg), var(--panel) 120px); border-color: color-mix(in srgb, var(--good) 35%, var(--line)); }
+.status.warn { background: linear-gradient(var(--warn-bg), var(--panel) 120px); border-color: color-mix(in srgb, var(--warn) 35%, var(--line)); }
+.status.bad { background: linear-gradient(var(--bad-bg), var(--panel) 120px); border-color: color-mix(in srgb, var(--bad) 35%, var(--line)); }
 .status .state { font-size: 20px; font-weight: 700; margin: 4px 0 8px; }
 .status.good .state { color: var(--good); }
 .status.warn .state { color: var(--warn); }
