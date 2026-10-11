@@ -1,0 +1,42 @@
+name = "techcatalyst-seal"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Static files: embed.js, admin + business portals, styles.
+# The Worker runs first only for routes that don't match a file.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "none"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "techcatalyst-seal"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"   # wrangler d1 create techcatalyst-seal
+migrations_dir = "migrations"
+
+[vars]
+# Public origin of this service (no trailing slash). Used for links, CSRF origin checks, JWS issuer.
+PUBLIC_ORIGIN = "https://seal.techcatalyst.example"
+ISSUER_NAME = "TechCatalyst"
+# Attestation lifetime (seconds) — how long a fetched seal response stays valid.
+SEAL_TTL_SECONDS = "600"
+INVITE_TTL_DAYS = "30"
+# "none" (return links to the business) or "resend"
+MAIL_PROVIDER = "none"
+MAIL_FROM = "TechCatalyst Reviews <reviews@techcatalyst.example>"
+
+# Secrets (set with `wrangler secret put <NAME>`; for local dev put them in .dev.vars):
+#   SIGNING_KEY_JWK   - ECDSA P-256 private key JWK (npm run gen:signing-key)
+#   HASH_SECRET       - 32+ random bytes, base64; HMAC key for IP / email hashing
+#   BOOTSTRAP_TOKEN   - one-time token to mint the first admin key
+#   RESEND_API_KEY    - only if MAIL_PROVIDER = "resend"
+
+# Housekeeping: purge expired sessions, rate-limit rows, invite emails.
+[triggers]
+crons = ["17 * * * *"]
+
+[observability]
+enabled = true

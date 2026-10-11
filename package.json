@@ -1,0 +1,26 @@
+{
+  "name": "techcatalyst-seal",
+  "version": "1.0.0",
+  "description": "TechCatalyst Review Seal: live, expiring, signed attestations for verified business reviews",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc -p .",
+    "db:migrate:local": "wrangler d1 migrations apply techcatalyst-seal --local",
+    "db:migrate:remote": "wrangler d1 migrations apply techcatalyst-seal --remote",
+    "gen:secrets": "node scripts/gen-secrets.mjs",
+    "gen:dev-vars": "node scripts/gen-secrets.mjs --dev-vars",
+    "test": "node scripts/e2e.mjs"
+  },
+  "dependencies": {
+    "hono": "^4.13.13",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261011.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.149.0"
+  },
+  "private": true,
+  "type": "module"
+}
