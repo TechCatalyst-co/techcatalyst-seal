@@ -92,7 +92,7 @@ td, dd, .num { font-variant-numeric: tabular-nums; }
 .status .state:has(.seal) { margin: var(--s4) 0; }
 .status > p:not(.state) { color: var(--muted); }
 
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s3); margin: var(--s5) 0 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: var(--s3); margin: var(--s5) 0 0; }
 .facts div { background: color-mix(in srgb, var(--panel) 55%, var(--bg)); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
 .facts dt { font-size: 12.5px; color: var(--muted); }
 .facts dd { margin: 3px 0 0; font-weight: 600; word-break: break-word; }
