@@ -4,33 +4,161 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TechCatalyst Review Seal</title>
+<meta name="description" content="TechCatalyst verifies that a business's most recent reviews come from real customers. The seal on their site is checked live and carries an expiry date, like a security certificate.">
 <link rel="stylesheet" href="/assets/app.css">
+<link rel="stylesheet" href="/assets/landing.css">
+<script src="/assets/landing.js" defer></script>
 </head>
-<body>
+<body class="landing">
 <header class="topbar">
   <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>TechCatalyst <span class="muted">Review Seal</span></a>
-  <a class="btn small" href="/portal/">Business sign in</a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#businesses">For businesses</a>
+    <a href="#check">Check a seal</a>
+    <a class="btn small" href="/portal/">Business sign in</a>
+  </nav>
 </header>
-<main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Independent review attestation</p>
-    <h1>Reviews you can check, not just trust.</h1>
-    <p class="muted">TechCatalyst verifies that a business's most recent reviews come from real customers. The seal on their site is checked live against our records and carries an expiry date, like a security certificate.</p>
+
+<main>
+  <section class="hero-l">
+    <div class="hero-copy">
+      <h1>Reviews you can check, not just trust.</h1>
+      <p class="lede">TechCatalyst verifies that a business's most recent reviews come from real customers. The seal on their site is checked live against our records and carries an expiry date, like a security certificate.</p>
+      <div class="actions">
+        <a class="btn primary large" href="/portal/">Business sign in</a>
+        <a class="link-arrow" href="#check">How to check a seal</a>
+      </div>
+    </div>
+
+    <figure class="demo" aria-labelledby="demo-caption">
+      <div class="browser">
+        <div class="browser-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="address" data-demo-address>
+            <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v6.5h-9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span><span data-demo-domain>harborandpine.example</span>/checkout</span>
+          </span>
+        </div>
+        <div class="browser-page">
+          <div class="shop-lines" aria-hidden="true">
+            <span class="shop-name">Harbor &amp; Pine Coffee</span>
+            <span class="ln w70"></span><span class="ln w45"></span>
+          </div>
+          <div class="shop-foot">
+            <span class="shop-pay" aria-hidden="true"><span class="ln w30"></span><span class="ln w20"></span></span>
+            <span class="seal-slot" data-demo-seal>
+              <span class="seal v">
+                <svg class="seal-icon" width="30" height="34" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 2l12 4.5v9.2c0 7.8-5.2 13.7-12 16.3C8.2 29.4 3 23.5 3 15.7V6.5z"/><path class="seal-mark" d="M9.5 16.5l4 4 7-8"/></svg>
+                <span>
+                  <span class="seal-k">TECHCATALYST</span>
+                  <span class="seal-t" data-demo-title>Reviews Verified</span>
+                  <span class="seal-s" data-demo-sub>Last 10/10 reviews verified</span>
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="states" role="group" aria-label="Show the seal in a different state">
+        <button type="button" data-state="verified" aria-pressed="true">Verified</button>
+        <button type="button" data-state="under_review" aria-pressed="false">Under review</button>
+        <button type="button" data-state="expired" aria-pressed="false">Expired</button>
+        <button type="button" data-state="revoked" aria-pressed="false">Revoked</button>
+        <button type="button" data-state="copied" aria-pressed="false">Copied to another site</button>
+      </div>
+      <figcaption id="demo-caption" class="demo-note" aria-live="polite" data-demo-note>The certificate is active and the last 10 reviews all come from verified customers.</figcaption>
+    </figure>
   </section>
-  <div class="grid2">
-    <section class="card">
-      <h2>How verification works</h2>
-      <p><strong>Verified purchase.</strong> The business reports a real order; we send the customer a one-time review link.</p>
-      <p><strong>Audited.</strong> Reviews imported from Google, Yelp and others are checked by a TechCatalyst analyst.</p>
-      <p><strong>Screened.</strong> Every review is scored for duplicate devices, bursts and copy-paste text before it counts.</p>
-    </section>
-    <section class="card">
-      <h2>Checking a seal</h2>
-      <p>Click any TechCatalyst seal. You'll land on our verification page, which shows the certificate's status, expiry date, and the website the seal belongs to.</p>
-      <p class="muted">If the address bar doesn't match the domain on that page, the seal was copied.</p>
-    </section>
-  </div>
+
+  <section class="statement" aria-labelledby="attests">
+    <div class="wrap-l">
+      <h2 id="attests">What the seal attests</h2>
+      <p class="attest">Of this business's last <b>10</b> reviews, at least <b>100%</b> are verified by TechCatalyst, and the certificate is valid until <b data-demo-expiry-long>its expiry date</b>.</p>
+      <p class="muted narrow">The window, the bar and the minimum review count are set per certificate. The ratio is re-evaluated continuously: if new unverified reviews push it below the bar, the seal turns amber on its own, before the certificate expires.</p>
+    </div>
+  </section>
+
+  <section id="businesses" class="band" aria-labelledby="biz-h">
+    <div class="wrap-l split">
+      <div class="split-head">
+        <h2 id="biz-h">For businesses</h2>
+        <p class="lede-sm">Earn a seal from the reviews you already collect, then keep it by collecting them honestly. Every status change reaches every embedded seal within 30 seconds.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>Register your business</h3>
+          <p>We confirm you own your domain by DNS TXT record or by email to the domain contact. That website is the only one your seals can be bound to.</p>
+        </li>
+        <li>
+          <h3>Collect verified reviews</h3>
+          <p>Report real orders from the portal or the API and we send each customer a single-use review link. You can also import existing reviews from Google, Yelp, Facebook or a CSV for an analyst to audit.</p>
+          <p class="marks"><span class="tag good">Verified purchase</span> <span class="tag">Audited · Google</span></p>
+        </li>
+        <li>
+          <h3>Receive your certificate</h3>
+          <p>Once your recent reviews meet the bar, we issue a certificate for up to 397 days. Renew it before it expires.</p>
+        </li>
+        <li>
+          <h3>Embed the seal</h3>
+          <p>Paste one line where the seal should appear. It renders in an isolated shadow root and refreshes itself.</p>
+          <pre class="snippet code"><code>&lt;script src="<span data-origin>https://seal.techcatalyst.example</span>/embed.js"
+  data-tc-seal="seal_…" async&gt;&lt;/script&gt;</code></pre>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="screen wrap-l" aria-labelledby="screen-h">
+    <h2 id="screen-h">Every review is screened before it counts</h2>
+    <div class="screen-grid">
+      <p class="lede-sm">Each review is fraud-scored first. High-risk reviews are held for an analyst and never approved automatically. The signals are never shown to the business, so they can't be used to tune fake reviews.</p>
+      <ul class="signals">
+        <li>The same IP address within 30 days</li>
+        <li>Bursts of reviews in a short window</li>
+        <li>Near-duplicate or copy-paste text</li>
+        <li>Disposable email domains</li>
+        <li>Embedded links</li>
+        <li>Very short, low-effort five-star text</li>
+        <li>Submissions seconds after the invite</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="check" class="band alt" aria-labelledby="check-h">
+    <div class="wrap-l split">
+      <div class="split-head">
+        <h2 id="check-h">Checking a seal</h2>
+        <p class="lede-sm">A picture of a seal proves nothing. Clicking it does.</p>
+      </div>
+      <div class="check">
+        <ol class="checks">
+          <li><b>Click the seal.</b> You'll land on our verification page, on our domain.</li>
+          <li><b>Read the status and expiry.</b> Only a green "Reviews Verified" with a future date means the certificate is in force.</li>
+          <li><b>Compare the website.</b> If the address bar you came from doesn't match the domain on that page, the seal was copied.</li>
+        </ol>
+        <div class="verify-sample" aria-hidden="true">
+          <div class="card status good">
+            <p class="vs-name">Harbor &amp; Pine Coffee</p>
+            <p class="state">Reviews Verified</p>
+            <dl class="facts">
+              <div><dt>Website</dt><dd><code>harborandpine.example</code></dd></div>
+              <div><dt>Valid until</dt><dd data-demo-expiry>—</dd></div>
+              <div><dt>Recent reviews verified</dt><dd>10 / 10</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing wrap-l" aria-labelledby="close-h">
+    <h2 id="close-h">Already certified?</h2>
+    <p class="lede-sm">Invite customers, import reviews, and manage your seals from the business portal.</p>
+    <a class="btn primary large" href="/portal/">Business sign in</a>
+  </section>
 </main>
+
 <footer class="foot muted">Attestations are signed by TechCatalyst and checked live on every view.</footer>
 </body>
 </html>
