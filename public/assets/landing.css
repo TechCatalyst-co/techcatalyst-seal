@@ -1,37 +1,15 @@
 /* Landing page only. Builds on the tokens in app.css. */
-.landing {
-  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px;
-  --gutter: clamp(16px, 4vw, 40px);
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --seal-good: #34d399;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-}
-html:has(.landing) { scroll-behavior: smooth; scroll-padding-top: 16px; }
+.landing { scroll-behavior: smooth; }
+html:has(.landing) { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html:has(.landing) { scroll-behavior: auto; } }
-.landing ::selection { background: color-mix(in srgb, var(--brand) 26%, transparent); color: var(--ink); }
-.landing :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
-.landing a { text-underline-offset: .2em; text-decoration-thickness: 1px; }
-.landing h1, .landing h2, .landing h3 { text-wrap: balance; color: var(--ink); }
-.landing p { text-wrap: pretty; }
 
 /* Top bar */
-.landing .topbar { padding-inline: var(--gutter); }
-.landing .brand, .landing .topbar .btn { white-space: nowrap; }
-@media (max-width: 400px) { .landing .brand { font-size: 14px; gap: 8px; } .landing .topbar .btn.small { padding-inline: 8px; } }
 .topnav { display: flex; align-items: center; gap: var(--s5); }
 .topnav a:not(.btn) { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
 .topnav a:not(.btn):hover { color: var(--ink); }
 @media (max-width: 640px) { .topnav a:not(.btn) { display: none; } }
 
 .wrap-l { max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
-.btn.large { padding: 12px 20px; font-size: 16px; border-radius: 10px; text-decoration: none; display: inline-block; }
-.btn.primary { transition: background-color .2s var(--ease-out), box-shadow .2s var(--ease-out); }
-.btn.primary:hover { background: color-mix(in srgb, var(--brand) 88%, var(--ink)); box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--brand) 70%, transparent); }
-.link-arrow { font-weight: 600; color: var(--ink); text-decoration: none; }
-.link-arrow::after { content: ""; display: inline-block; width: .5em; height: .5em; margin-left: .45em; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(1px) rotate(45deg); transition: transform .2s var(--ease-out); }
-.link-arrow:hover::after { transform: translateY(4px) rotate(45deg); }
 
 /* Hero */
 .hero-l {
@@ -69,23 +47,6 @@ html:has(.landing) { scroll-behavior: smooth; scroll-padding-top: 16px; }
 
 /* Seal: mirrors embed.js so the demo is what shoppers actually see. */
 .seal-slot { display: inline-block; position: relative; }
-.seal {
-  display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px 9px 10px; border-radius: 10px;
-  border: 1px solid var(--ring); background: var(--sbg); color: var(--sfg); min-width: 248px;
-  font: 500 12px/1.25 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  transition: background-color .45s var(--ease-out), border-color .45s var(--ease-out), color .45s var(--ease-out);
-}
-.seal > span { display: grid; }
-.seal-icon { flex: none; color: var(--accent); }
-.seal-icon path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke .45s var(--ease-out); }
-.seal-icon .seal-mark { stroke-width: 2.4; }
-.seal-k { font-size: 9.5px; letter-spacing: .12em; font-weight: 700; color: var(--accent); }
-.seal-t { font-size: 14px; font-weight: 700; margin: 1px 0; }
-.seal-s { opacity: .75; font-size: 11px; font-variant-numeric: tabular-nums; }
-.seal.v { --sbg: #0f2a1d; --sfg: #e8fff2; --accent: #34d399; --ring: rgba(52, 211, 153, .5); }
-.seal.w { --sbg: #2b2410; --sfg: #fff7df; --accent: #fbbf24; --ring: rgba(251, 191, 36, .5); }
-.seal.b { --sbg: #2c1214; --sfg: #ffecec; --accent: #f87171; --ring: rgba(248, 113, 113, .5); }
-
 /* The one motion moment: a live re-check sweeps across the seal before it settles. */
 .seal-slot::after {
   content: ""; position: absolute; inset: 0; border-radius: 10px; pointer-events: none; opacity: 0;
@@ -97,7 +58,7 @@ html:has(.landing) { scroll-behavior: smooth; scroll-padding-top: 16px; }
 @keyframes sweep { 0% { opacity: 1; background-position: 120% 0; } 100% { opacity: 0; background-position: -20% 0; } }
 @media (prefers-reduced-motion: reduce) {
   .seal-slot.checking::after { animation: none; }
-  .seal, .seal-icon path, .address { transition: none; }
+  .address { transition: none; }
 }
 
 .states { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s5); }
@@ -161,7 +122,6 @@ pre.code { font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto
 .closing h2 { margin: 0; }
 .closing .lede-sm { margin-bottom: var(--s3); }
 
-.landing .foot { border-top: 1px solid var(--line); }
 
 @media (max-width: 900px) {
   .hero-l { grid-template-columns: minmax(0, 1fr); gap: var(--s7); padding-top: var(--s7); }
@@ -175,5 +135,5 @@ pre.code { font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto
   .seal { min-width: 0; }
   .steps li { padding-left: 46px; }
 }
-.seal-slot, .seal { max-width: 100%; }
+.seal-slot { max-width: 100%; }
 .address > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }

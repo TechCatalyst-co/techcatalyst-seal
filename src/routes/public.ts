@@ -8,7 +8,7 @@ import { getSigningKey, hmacHex, id, newApiKey, randomToken, sha256Hex, signJws,
 import { HttpError, SESSION_COOKIE, SESSION_TTL, assertSameOrigin, audit, hostAllowed, limit, principalFromKey, resolvePrincipal } from '../security';
 import { BusinessStatus, STATE_LABEL, businessStatus } from '../status';
 import { badgeSvg } from '../badge';
-import { PAGE_CSP, esc, fmtDate, page, stars } from '../html';
+import { PAGE_CSP, esc, fmtDate, page, sealPill, stars } from '../html';
 import { AUTO_APPROVE_MAX, HOLD_THRESHOLD, scoreReview } from '../fraud';
 import { parse } from '../validate';
 
@@ -273,9 +273,8 @@ pub.get('/verify/:slug', limit('verifypage', 120, 60), async (c) => {
       `${st.business.name} · TechCatalyst verification`,
       `${sealHtml}
 <section class="card status ${tone}">
-  <p class="eyebrow">Review verification status</p>
   <h1>${esc(st.business.name)}</h1>
-  <p class="state">${esc(STATE_LABEL[st.state])}</p>
+  <p class="state">${sealPill(st.state, STATE_LABEL[st.state], st.state === 'verified' ? `Last ${e.verified}/${e.considered} reviews verified · Valid until ${fmtDate(cert?.expires_at)}` : 'Review verification status')}</p>
   <p>${esc(explain[st.state])}</p>
   <dl class="facts">
     <div><dt>Website</dt><dd><code>${esc(st.business.website)}</code></dd></div>
@@ -321,9 +320,8 @@ function reviewForm(inv: NonNullable<Awaited<ReturnType<typeof findInvite>>>, to
   return page(
     `Review ${inv.business_name}`,
     `<section class="card">
-  <p class="eyebrow">Independent review · collected by TechCatalyst</p>
   <h1>How was your experience with ${esc(inv.business_name)}?</h1>
-  <p class="muted">Your review is tied to a real purchase, which is why it carries a "Verified purchase" mark. ${esc(inv.business_name)} cannot edit it.</p>
+  <p class="muted">Collected independently by TechCatalyst. Your review is tied to a real purchase, which is why it carries a "Verified purchase" mark. ${esc(inv.business_name)} cannot edit it.</p>
   ${error ? `<div class="alert bad">${esc(error)}</div>` : ''}
   <form method="post" action="/review/${esc(token)}" class="form">
     <fieldset class="ratings"><legend>Rating</legend>${radios}</fieldset>
