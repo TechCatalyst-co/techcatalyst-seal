@@ -66,11 +66,12 @@
       var newKey = h('div');
 
       root.append(
-        h('p', null, h('a', { href: '#businesses' }, '← All businesses')),
+        h('p', null, h('a', { class: 'link-back', href: '#businesses' }, 'All businesses')),
         h('section', { class: 'card status ' + tone },
-          h('p', { class: 'eyebrow' }, 'Live seal state'),
           h('h1', null, b.name),
-          h('p', { class: 'state' }, T.stateTag(d.state)),
+          h('p', { class: 'state' }, T.seal(d.state, d.state === 'verified'
+            ? 'Last ' + e.verified + '/' + e.considered + ' reviews verified · Valid until ' + T.date(cert && cert.expires_at)
+            : 'Live seal state')),
           h('dl', { class: 'facts' },
             fact('Website', b.website), fact('Slug', b.slug), fact('Account', b.status),
             fact('Certificate', cert ? cert.id : '—'), fact('Valid until', T.date(cert && cert.expires_at)),
@@ -302,7 +303,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    T.login(app, 'TechCatalyst certification admin', 'admin', function () {
+    T.login(app, 'the certification admin', 'admin', function () {
       var lo = document.getElementById('logout');
       lo.classList.remove('hidden');
       lo.addEventListener('click', T.logout);

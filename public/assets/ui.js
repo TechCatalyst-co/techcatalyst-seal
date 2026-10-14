@@ -73,6 +73,31 @@
     return h('span', { class: 'tag ' + m[1] }, m[0]);
   }
 
+  var SEAL_TITLE = {
+    verified: 'Reviews Verified', under_review: 'Verification Under Review', expired: 'Certification Expired',
+    suspended: 'Certification Suspended', revoked: 'Certification Revoked', not_certified: 'Not Certified',
+  };
+  /** The live seal as shoppers see it (same look as embed.js). */
+  function seal(state, sub) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var cls = state === 'verified' ? 'v' : state === 'under_review' ? 'w' : state === 'not_certified' || !state ? 'n' : 'b';
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'seal-icon');
+    svg.setAttribute('width', '30');
+    svg.setAttribute('height', '34');
+    svg.setAttribute('viewBox', '0 0 30 34');
+    svg.setAttribute('aria-hidden', 'true');
+    [['', 'M15 2l12 4.5v9.2c0 7.8-5.2 13.7-12 16.3C8.2 29.4 3 23.5 3 15.7V6.5z'],
+     ['seal-mark', state === 'verified' ? 'M9.5 16.5l4 4 7-8' : 'M15 10v8M15 22.5v.5']].forEach(function (d) {
+      var p = document.createElementNS(NS, 'path');
+      if (d[0]) p.setAttribute('class', d[0]);
+      p.setAttribute('d', d[1]);
+      svg.appendChild(p);
+    });
+    return h('span', { class: 'seal ' + cls }, svg,
+      h('span', null, h('span', { class: 'seal-k' }, 'TECHCATALYST'), h('span', { class: 'seal-t' }, SEAL_TITLE[state] || 'Seal unavailable'), h('span', { class: 'seal-s' }, sub || '')));
+  }
+
   /** Shows a newly minted secret exactly once. */
   function secretBox(token, note) {
     return h('div', { class: 'alert warn' },
@@ -109,8 +134,8 @@
     function show() {
       root.replaceChildren(
         h('section', { class: 'card login' },
-          h('p', { class: 'eyebrow' }, title),
-          h('h1', null, 'Sign in'),
+          h('span', { class: 'brand-mark', 'aria-hidden': 'true' }),
+          h('h1', null, 'Sign in to ' + title),
           h('p', { class: 'muted' }, 'Paste your API key. It is exchanged for a secure session cookie and never stored in the browser.'),
           h('form', { class: 'form', onsubmit: function (e) {
             e.preventDefault();
@@ -144,5 +169,5 @@
     }));
   }
 
-  window.TC = { h: h, api: api, toast: toast, date: date, datetime: datetime, stateTag: stateTag, secretBox: secretBox, parseCsv: parseCsv, login: login, logout: logout, tabs: tabs };
+  window.TC = { h: h, api: api, toast: toast, date: date, datetime: datetime, stateTag: stateTag, seal: seal, secretBox: secretBox, parseCsv: parseCsv, login: login, logout: logout, tabs: tabs };
 })();

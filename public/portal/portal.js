@@ -32,9 +32,10 @@
       }[d.state];
       root.append(
         h('section', { class: 'card status ' + tone },
-          h('p', { class: 'eyebrow' }, 'Your seal right now'),
           h('h1', null, d.business.name),
-          h('p', { class: 'state' }, T.stateTag(d.state)),
+          h('p', { class: 'state' }, T.seal(d.state, d.state === 'verified'
+            ? 'Last ' + e.verified + '/' + e.considered + ' reviews verified · Valid until ' + T.date(cert && cert.expires_at)
+            : 'Your seal right now')),
           h('p', null, advice),
           h('dl', { class: 'facts' },
             fact('Certificate', cert ? cert.id : '—'),
@@ -223,7 +224,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    T.login(app, 'Business portal', 'business', function () {
+    T.login(app, 'the business portal', 'business', function () {
       var lo = document.getElementById('logout');
       lo.classList.remove('hidden');
       lo.addEventListener('click', T.logout);
